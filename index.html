@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wordly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <header>
+      <span class="logo">Wordly</span>
+      <span class="tagline">Dictionary &amp; Language Tools</span>
+    </header>
+
+    <form id="searchForm">
+      <input id="searchInput" type="text" placeholder="Search a word..." autocomplete="off" spellcheck="false" />
+      <button id="searchBtn" type="submit">Look up</button>
+    </form>
+
+    <div id="loader" class="loader">
+      <div class="ring"></div>
+    </div>
+
+    <div id="errorMsg" class="error-msg"></div>
+
+    <section id="result"></section>
+
+  </div>
+
+  <footer>
+    Powered by the <a href="https://dictionaryapi.dev/" target="_blank">Free Dictionary API</a>
+  </footer>
+
+  <audio id="audioPlayer"></audio>
+
+  <script src="index.js"></script>
+
+</body>
+</html>

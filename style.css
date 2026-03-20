@@ -1,0 +1,350 @@
+/* ── Color variables ── */
+:root {
+  --bg: #0d1b2a;
+  --surface: #112236;
+  --border: #1e3a52;
+  --pink: #ff2d78;
+  --teal: #00d4c8;
+  --teal-faint: rgba(0, 212, 200, 0.12);
+  --white: #f0eef8;
+  --grey: #6a85a0;
+  --red: #ff5252;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Page wrapper ── */
+.page {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+  flex: 1;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 48px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--pink);
+}
+
+.tagline {
+  font-size: 0.75rem;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Search form ── */
+#searchForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+#searchInput {
+  flex: 1;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--white);
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  padding: 14px 20px;
+  outline: none;
+}
+
+#searchInput::placeholder {
+  color: var(--grey);
+  font-style: italic;
+}
+
+#searchInput:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-faint);
+}
+
+#searchBtn {
+  background-color: var(--pink);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 14px 24px;
+  text-transform: uppercase;
+}
+
+#searchBtn:hover {
+  opacity: 0.85;
+}
+
+#searchBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Loader ── */
+.loader {
+  display: none;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.loader.visible {
+  display: flex;
+}
+
+.ring {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error message ── */
+.error-msg {
+  display: none;
+  background-color: rgba(255, 82, 82, 0.1);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  border-radius: 6px;
+  color: #ff8a8a;
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* ── Result section ── */
+#result {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+#result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Word title row ── */
+.word-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.word-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--white);
+}
+
+/* ── Audio button ── */
+.audio-btn {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--teal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.audio-btn:hover {
+  border-color: var(--teal);
+  background-color: var(--teal-faint);
+}
+
+.audio-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* ── Phonetic text ── */
+.phonetic {
+  color: var(--teal);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+/* ── Meanings ── */
+.meanings {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Part of speech tag ── */
+.pos-tag {
+  display: inline-block;
+  background-color: var(--pink);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+/* ── Definitions list ── */
+.definitions {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.def-item {
+  padding-left: 18px;
+  border-left: 2px solid var(--border);
+}
+
+.def-item:hover {
+  border-left-color: var(--pink);
+}
+
+.def-text {
+  font-size: 0.95rem;
+  color: var(--white);
+}
+
+.def-example {
+  font-style: italic;
+  color: var(--grey);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+/* ── Synonyms ── */
+.synonyms-section {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.synonyms-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+}
+
+.synonym-pill {
+  background-color: var(--teal-faint);
+  border: 1px solid rgba(0, 212, 200, 0.25);
+  border-radius: 20px;
+  color: var(--teal);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 3px 12px;
+}
+
+.synonym-pill:hover {
+  background-color: rgba(0, 212, 200, 0.2);
+}
+
+/* ── Divider between meanings ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+/* ── Source link ── */
+.source-line {
+  font-size: 0.75rem;
+  color: var(--grey);
+  margin-top: 36px;
+}
+
+.source-line a {
+  color: var(--grey);
+  text-decoration: underline;
+}
+
+.source-line a:hover {
+  color: var(--teal);
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.75rem;
+  color: var(--grey);
+  border-top: 1px solid var(--border);
+}
+
+footer a {
+  color: var(--grey);
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: var(--teal);
+}
+
+/* ── Mobile ── */
+@media (max-width: 500px) {
+  #searchForm {
+    flex-direction: column;
+  }
+  #searchBtn {
+    width: 100%;
+  }
+  .word-title {
+    font-size: 2.5rem;
+  }
+}
